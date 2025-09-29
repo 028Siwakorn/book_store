@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Book from "../components/BookCard";
+import BookCard from "../components/BookCard";
 import BookService from "../services/book.service";
 import Swal from "sweetalert2";
 
@@ -12,7 +12,7 @@ const Books = () => {
         const response = await BookService.getAllBook();
 
         if (response.status === 200) {
-          setBooks(response.data);
+          setBooks(response.data); // Make sure this is an array of books
         }
       } catch (error) {
         Swal.fire({
@@ -27,9 +27,11 @@ const Books = () => {
 
   return (
     <div>
-      <div>Books</div>
-      {books.length > 0 &&
-        books.map((book) => <Book key={book.title} book={book} />)}
+      <h1 className="text-2xl font-bold mb-4">Books</h1>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {books.length > 0 &&
+          books.map((book) => <BookCard key={book.itemId} book={book} />)}
+      </div>
     </div>
   );
 };
