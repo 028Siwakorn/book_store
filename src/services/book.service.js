@@ -1,6 +1,6 @@
 import api from "./api";
 
-const API_URL = import.meta.env.VITE_BOOK_API;
+const API_URL = import.meta.env.VITE_API_URL;
 
 const createBook = async (data) => {
   return await api.post(`${API_URL}/`, data);
